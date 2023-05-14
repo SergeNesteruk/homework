@@ -9,7 +9,7 @@ int main()
     
     fin >> n; //задали размер массива из файла для массива n
 
-    int* n_arr = new int[n];//   long *array = new long [num]; // выделели память для массива n
+    int* n_arr = new int[n]; // выделели память для массива n
 
     for (int i = 0; i < n; i++)
     {
@@ -25,22 +25,40 @@ int main()
         fin >> m_arr[i];
     }
 
-    //тестовый вывод
-    std::cout << n << "\n";
-    for (int i = 0; i < n; i++)
+    //изменение массивов
+    int temp = m_arr[m-1];
+    for ( int i = m-1; i>= 0; i--)
     {
-        std::cout << n_arr[i] << " ";
+        m_arr[i] = m_arr[i - 1];
     }
-    std::cout << "\n" << m << "\n";
+    m_arr[0] = temp;
+
+    int temp1 = n_arr[0];
+    for (int i = 1; i < n; i++)
+    {
+        n_arr[i-1] = n_arr[i];
+    }
+    n_arr[n - 1] = temp1;
+
+    //вывод
+    std::ofstream fout ("out.txt");
+
+    fout << m << "\n";
     for (int i = 0; i < m; i++)
     {
-        std::cout << m_arr[i] << " ";
+        fout << m_arr[i] << " ";
     }
-    //std::ofstream fout("out.txt");
 
+    fout << "\n" << n << "\n";
+    for (int i = 0; i < n; i++)
+    {
+        fout << n_arr[i] << " ";
+    }
+
+    
     delete[] n_arr;
     delete[] m_arr;
     fin.close();
-    //fout.close();
+    fout.close();
 
 }
