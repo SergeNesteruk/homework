@@ -1,20 +1,37 @@
-﻿// task 02 Accounts.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include <Windows.h>
 
-#include <iostream>
+struct bank_account
+{
+    int account_number = 0;
+    std::string account_holder = "Name";
+    double money_count = 0;
+};
+
+void update_balance (bank_account& a, int & new_balance)
+{
+    a.money_count = new_balance;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    SetConsoleCP(1251); SetConsoleOutputCP(1251);
+    bank_account user;
+    std::cout << "Введите номер счета: ";
+    std::cin >> user.account_number;
+
+    std::cout << "Введите имя владельца: ";
+    std::cin >> user.account_holder;
+
+    std::cout << "Введите баланс: ";
+    std::cin >> user.money_count;
+
+    std::cout << "Введите новый баланс: ";
+    int user_changes =  0; 
+    std::cin >> user_changes;
+
+    update_balance(user, user_changes);
+
+    std::cout << "Ваш счет: "<<user.account_holder<<", "<<user.account_number<<", "<<user.money_count;
+    
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
