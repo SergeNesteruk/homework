@@ -87,18 +87,6 @@ int main()
 			std::cout << "Неверный ввод!" << std::endl;
 		}
 		
-
-		/*if (calc.set_num1(number1) && calc.set_num2(number2))
-		{
-			std::cout << "num1 + num2 = " << calc.add() << std::endl;
-			std::cout << "num1 - num2 = " << calc.subtract_1_2() << std::endl;
-			std::cout << "num2 - num1 = " << calc.subtract_2_1() << std::endl;
-			std::cout << "num1 * num2 = " << calc.multiply() << std::endl;
-			std::cout << "num1 / num2 = " << calc.divide_1_2() << std::endl;
-			std::cout << "num2 / num1 = " << calc.divide_2_1() << std::endl;
-		}*/
-		
-
 	} while (true);
 
 }
