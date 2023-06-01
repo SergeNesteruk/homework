@@ -3,9 +3,10 @@
 
 class Counter
 {
-public:
+private:
     double x;
-    double enc()
+public:
+    double inc()
     {
         return x++;
     }
@@ -13,9 +14,8 @@ public:
     {
         return x--;
     }
-    void view(double x)
+    void view()
     {   
-        this->x = x;
         std::cout << x << std::endl;
     }
     Counter()
@@ -56,7 +56,7 @@ int main()
 
             if (user_in == '+')
             {
-                c.enc();
+                c.inc();
             }
             if (user_in == '-')
             {
@@ -64,7 +64,7 @@ int main()
             }
             if (user_in == '=')
             {
-                c.view(c.x);
+                c.view();
             }           
         } while (user_in != 'x');
     }
@@ -79,7 +79,7 @@ int main()
 
             if (user_in == '+')
             {
-                b.enc();
+                b.inc();
             }
             if (user_in == '-')
             {
@@ -87,11 +87,11 @@ int main()
             }
             if (user_in == '=')
             {
-                b.view(b.x);
+                b.view();
             }
         } while (user_in != 'x');
     }
-    std::cout << "До свидания!";
+    std::cout << "До свидания!"<<std::endl;
     
 }
 
