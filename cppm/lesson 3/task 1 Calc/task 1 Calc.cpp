@@ -75,7 +75,7 @@ int main()
 					std::cout << "num2 / num1 = " << calc.divide_2_1() << std::endl;
 					break;
 				}
-				if (number2 == 0)
+				else
 				{
 					std::cout << "Неверный ввод!" << std::endl;
 				}
