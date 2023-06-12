@@ -12,10 +12,10 @@ public:
 		numerator_ = numerator;
 		denominator_ = denominator;
 	}
-	void print() 
+	/*void print() 
 	{
 		std::cout << numerator_ << " " << denominator_ << std::endl;
-	}
+	}*/
 
 	bool operator==(Fraction num)
 	{
@@ -90,7 +90,7 @@ int main()
 	std::cout << "f1" << ((f1 >= f2) ? " >= " : " not >= ") << "f2" << '\n';
 
 	std::cout << '\n';
-	f1.print();
-	f2.print();
+	/*f1.print();
+	f2.print();*/
 	return 0;
 }
