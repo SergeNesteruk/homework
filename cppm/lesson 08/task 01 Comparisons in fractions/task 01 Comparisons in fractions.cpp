@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <concepts>
 
 class Fraction
 {
@@ -75,6 +76,7 @@ public:
 		num.denominator_ *= denominator_;
 		return temp_num >= num.numerator_;
 	}
+	//auto operator<=>(const Fraction&) const = default; 
 };
 
 int main()
