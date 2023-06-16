@@ -13,11 +13,7 @@ public:
 		numerator_ = numerator;
 		denominator_ = denominator;
 	}
-	int get_num() {		return numerator_;	} int set_num() { }
-	int get_den()
-	{
-		return denominator_;
-	}
+	
 	void print()
 	{
 		std::cout << numerator_ <<"/"<< denominator_ << std::endl;
@@ -138,9 +134,9 @@ int main()
 	std::cout << f1 << " - " << f2 << " = " << (f1 - f2).reduce() << "\n";
 	std::cout << f1 << " * " << f2 << " = " << (f1 * f2).reduce() << "\n";
 	std::cout << f1 << " / " << f2 << " = " << (f1 / f2).reduce() << "\n";
-	std::cout << ++f1 << " * " << f2 << " = " << (f1 * f2).reduce() << "\n";
+	std::cout << "(++)"<< f1 << " * " << f2 << " = " << (++f1 * f2).reduce() << "\n";
 	std::cout << "значение дроби 1 = " << f1 << "\n";
-	std::cout << f1-- << " * " << f2 << " = " << (f1 * f2).reduce() << "\n";
+	std::cout << f1<<"(--)" << " * " << f2 << " = " << (f1-- * f2).reduce() << "\n";
 	std::cout << "значение дроби 1 = " << f1 << "\n";
 	std::cout << -f1 << " + " << f2 << " = " << (-f1 + f2).reduce() << "\n";
 
