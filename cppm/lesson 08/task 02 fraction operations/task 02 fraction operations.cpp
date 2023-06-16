@@ -22,6 +22,25 @@ public:
 	{
 		std::cout << numerator_ <<"/"<< denominator_ << std::endl;
 	}
+	Fraction& reduce()
+	{
+		int sumnod, nod_n=numerator_, nod_d=denominator_;
+		while (nod_n != 0 && nod_d != 0)
+		{
+			if (nod_n > nod_d)
+			{
+				nod_n = nod_n % nod_d;
+			}
+			else
+			{
+				nod_d = nod_d % nod_n;
+			}
+		}
+		sumnod = nod_n + nod_d;
+		numerator_ = numerator_ / sumnod;
+		denominator_ = denominator_ / sumnod;
+		return *this;
+	}
 	Fraction operator+(Fraction num)
 	{
 		int temp_num = numerator_;
@@ -85,27 +104,6 @@ public:
 	friend std::ostream& operator<< (std::ostream& out, const Fraction right);
 };
 
-Fraction gcf(Fraction smth)
-{
-	int i;
-	if (smth.get_num() < smth.get_den())
-	{
-		i = smth.get_num();
-	}
-	else
-	{
-		i = smth.get_den();
-	}
-	for (; i > 0; i--)
-	{
-		if (smth.get_num() % i == 0 && smth.get_den() % i == 0)
-		{
-			smth.get_num() = smth.get_num() / i;
-
-		}
-	}
-}
-
 std::ostream& operator<<(std::ostream& out, const Fraction right)
 {
 	out << right.numerator_ << "/" << right.denominator_;
@@ -136,15 +134,15 @@ int main()
 	f1.print();
 	f2.print();
 	
-	std::cout << f1 << " + " << f2 << " = " << f1 + f2 << "\n";
-	//std::cout << f1 << " - " << f2 << " = " << f1 - f2 << "\n";
-	//std::cout << f1 << " * " << f2 << " = " << f1 * f2 << "\n";
-	//std::cout << f1 << " / " << f2 << " = " << f1 / f2 << "\n";
-	std::cout << ++f1 << " * " << f2 << " = " << f1 * f2 << "\n";
+	std::cout << f1 << " + " << f2 << " = " << (f1 + f2).reduce() << "\n";
+	std::cout << f1 << " - " << f2 << " = " << (f1 - f2).reduce() << "\n";
+	std::cout << f1 << " * " << f2 << " = " << (f1 * f2).reduce() << "\n";
+	std::cout << f1 << " / " << f2 << " = " << (f1 / f2).reduce() << "\n";
+	std::cout << ++f1 << " * " << f2 << " = " << (f1 * f2).reduce() << "\n";
 	std::cout << "значение дроби 1 = " << f1 << "\n";
-	std::cout << f1-- << " * " << f2 << " = " << f1 * f2 << "\n";
+	std::cout << f1-- << " * " << f2 << " = " << (f1 * f2).reduce() << "\n";
 	std::cout << "значение дроби 1 = " << f1 << "\n";
-	std::cout << -f1 << " + " << f2 << " = " << -f1 + f2 << "\n";
+	std::cout << -f1 << " + " << f2 << " = " << (-f1 + f2).reduce() << "\n";
 
 	return 0;
 }
