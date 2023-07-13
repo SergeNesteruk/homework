@@ -44,24 +44,6 @@ public:
     }
 };
 
-void sort1(address* addresses, int size)
-{
-
-    std::string tmp_str = "временная строка";
-        
-    for (int j = 0; j < size; j++)
-    {
-        for (int i =size-1; i > 0; i--)
-        {
-            if (addresses[i].get_out_full_add().compare(addresses[i - 1].get_out_full_add()) < 0 )
-            {
-                tmp_str = addresses[i].get_out_full_add();
-                addresses[i].get_out_full_add() = addresses[i - 1].get_out_full_add();
-                addresses[i - 1].get_out_full_add() = tmp_str;
-            }
-        }
-    }
-}
 
 void sort(address* addresses, int size)
 {
