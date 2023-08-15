@@ -1,15 +1,31 @@
 ﻿#include <Windows.h>
 #include <iostream>
 
+class Figure
+{
+protected:
+	std::string name;
+	int sides_count;
+public:
+	Figure()
+	{
+		name = "Фигура";
+		sides_count = 0;
+	}
+	virtual void print()
+	{
+		std::cout << name << "\n";
+	}
+};
 
-class Triangle
+
+class Triangle: public Figure
 {
 protected:
 	int a, b, c; //sides
 	int A, B, C; //angles
-	std::string name;
 public:
-	Triangle(int a, int b, int c, int A, int B, int C)
+	Triangle(int a, int b, int c, int A, int B, int C): Figure()
 	{
 		this->a = a;
 		this->b = b;
@@ -26,18 +42,18 @@ public:
 	int get_B() { return B; }
 	int get_C() { return C; }
 	std::string get_name() { return name; }
-	void print()
+	void print() override
 	{
-		std::cout << name<<"\nСтороны: " << a << " " << b << " " << c << "\nУглы: " << A << " " << B << " " << C << "\n";
+		Figure::print();
+		std::cout << "Стороны: a=" << a << " b=" << b << " c=" << c << "\nУглы: A=" << A << " B=" << B << " C=" << C << "\n";
 	}
 };
 class Right_triangle: public Triangle
 {
 public:
-	Right_triangle( int a, int b, int c, int A, int B) : Triangle(a, b, c, A, B, C)
+	Right_triangle( int a, int b, int c, int A, int B) : Triangle(a, b, c, A, B, 90)
 	{
 		name = "Прямоугольный треугольник";
-		C = 90;
 	}
 };
 
@@ -55,24 +71,22 @@ public:
 class Equilateral_triangle : public Triangle
 {
 public:
-	Equilateral_triangle (int a) : Triangle(a, b, c, A, B, C)
+	Equilateral_triangle (int a) : Triangle(a, b, c, 60, 60, 60)
 	{
 		name = "Равносторонний треугольник";
 		b = a;
 		c = a;
-		A = B = C = 60;
 	}
 };
 
 
-class Quadrangle
+class Quadrangle: public Figure
 {
 protected:
 	int a, b, c, d; //sides
 	int A, B, C, D; //angles
-	std::string name;
 public:
-	Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D)
+	Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D): Figure ()
 	{
 		this->a = a;
 		this->b = b;
@@ -93,9 +107,11 @@ public:
 	int get_C() { return C; }
 	int get_D() { return D; }
 	std::string get_name() { return name; }
-	void print()
+	
+	void print() override
 	{
-		std::cout << name << "\nСтороны: " << a << " " << b << " " << c <<" " <<d<< "\nУглы: " << A << " " << B << " " << C <<" "<<D<< "\n";
+		Figure::print();
+		std::cout << "Стороны: a=" << a << " b=" << b << " c=" << c <<" d=" <<d<< "\nУглы: A=" << A << " B=" << B << " C=" << C <<" D="<<D<< "\n";
 	}
 
 };
@@ -116,11 +132,10 @@ public:
 class Rangle : public Parallelogram
 {
 public:
-	Rangle (int a, int b) : Parallelogram (a,b,A,B)
+	Rangle (int a, int b) : Parallelogram (a,b,90,90)
 	{
 		c = a;
 		d = b;
-		A = B = C = D = 90;
 		name = "Прямоугольник";
 	}
 };
@@ -148,14 +163,9 @@ public:
 	}
 };
 
-void print_info(Triangle* F)
+void print_info(Figure *F)
 {
-	std::cout << F->get_name() << "\nСтороны: a=" << F->get_a() << " b=" << F->get_b() << " c=" << F->get_c() << "\nУглы: A=" << F->get_A() << " B=" << F->get_B() << " C=" << F->get_C() <<"\n";
-}
-
-void print_info(Quadrangle *F)
-{
-	std::cout << F->get_name() << "\nСтороны: a=" << F->get_a() << " b=" << F->get_b() << " c=" << F->get_c() << " d=" << F->get_d() << "\nУглы: A=" << F->get_A() << " B=" << F->get_B() << " C=" << F->get_C() << " D=" << F->get_D() << "\n";
+	F->print();
 }
 
 int main()
@@ -164,48 +174,38 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	Triangle ABC(10, 20, 30, 50, 60, 70);
-	//ABC.print();
-
-	Right_triangle rABC(10,20,30,50,60);
-	//rABC.print();
-
-	Isosceles_triangle iABC(10, 20, 50, 60);
-	//iABC.print();
-
-	Equilateral_triangle eABC(30);
-	//eABC.print();
-
-	Quadrangle ABCD(10, 20, 30, 40, 50, 60, 70, 80);
-	//ABCD.print();
-
-	Rangle rABCD(10, 20);
-	//rABCD.print();
-
-	Square sABCD (20);
-	//sABCD.print();
-
-	Parallelogram pABCD(20, 30, 30, 40);
-	//pABCD.print();
-
-	Rhombus rhABCD(30, 30, 40);
-	//rhABCD.print();
-
 	print_info(&ABC);
 	std::cout << '\n';
+
+	Right_triangle rABC(10,20,30,50,60);
 	print_info(&rABC);
 	std::cout << '\n';
+
+	Isosceles_triangle iABC(10, 20, 50, 60);
 	print_info(&iABC);
 	std::cout << '\n';
+
+	Equilateral_triangle eABC(30);
 	print_info(&eABC);
 	std::cout << '\n';
+
+	Quadrangle ABCD(10, 20, 30, 40, 50, 60, 70, 80);
 	print_info(&ABCD);
 	std::cout << '\n';
+
+	Rangle rABCD(10, 20);
 	print_info(&rABCD);
 	std::cout << '\n';
+
+	Square sABCD (20);
 	print_info(&sABCD);
 	std::cout << '\n';
+
+	Parallelogram pABCD(20, 30, 30, 40);
 	print_info(&pABCD);
 	std::cout << '\n';
+
+	Rhombus rhABCD(30, 30, 40);
 	print_info(&rhABCD);
 	std::cout << '\n';
 }
