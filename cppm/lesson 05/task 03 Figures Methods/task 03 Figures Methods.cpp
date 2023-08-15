@@ -28,6 +28,7 @@ public:
 	}
 	virtual void print()
 	{
+		check_correct();
 		std::cout << name << ":\n" << correctness << "\n" << "Количество сторон: " << sides_count<<std::endl;
 	}
 };
@@ -72,7 +73,7 @@ public:
 class Right_triangle : public Triangle
 {
 public:
-	Right_triangle(int a, int b, int c, int A, int B, int C) : Triangle(a, b, c, A, B, C)
+	Right_triangle(int a, int b, int c, int A, int B) : Triangle(a, b, c, A, B, 90)
 	{
 		name = "Прямоугольный треугольник";
 	}
@@ -93,9 +94,11 @@ public:
 class Isosceles_triangle : public Triangle
 {
 public:
-	Isosceles_triangle (int a, int b, int c, int A, int B, int C) : Triangle(a, b, c, A, B, C)
+	Isosceles_triangle (int a, int b, int A, int B) : Triangle(a, b, c, A, B, C)
 	{
 		name = "Равнобедренный треугольник";
+		c = a;
+		C = A;
 	}
 	void check_correct() override
 	{
@@ -114,9 +117,10 @@ public:
 class Equilateral_triangle : public Triangle
 {
 public:
-	Equilateral_triangle (int a, int b, int c, int A, int B, int C) : Triangle(a, b, c, A, B, C)
+	Equilateral_triangle (int a) : Triangle(a, b, c, 60, 60, 60)
 	{
 		name = "Равносторонний треугольник";
+		b = c = a;
 	}
 	void check_correct() override
 	{
@@ -174,9 +178,11 @@ public:
 class Parallelogram : public Quadrangle
 {
 public:
-	Parallelogram(int a, int b, int c, int d, int A, int B, int C, int D) : Quadrangle(a, b, c, d, A, B, C, D)
+	Parallelogram(int a, int b, int A, int B) : Quadrangle(a, b, c, d, A, B, C, D)
 	{
 		name = "Параллелограмм";
+		c = a; d = b;
+		C = A; D = B; 
 	}
 	void check_correct() override
 	{
@@ -196,9 +202,10 @@ public:
 class Rangle : public Parallelogram
 {
 public:
-	Rangle(int a, int b, int c, int d, int A, int B, int C, int D) : Parallelogram(a, b, c, d, A, B, C, D)
+	Rangle(int a, int b) : Parallelogram(a, b, 90, 90)
 	{
 		name = "Прямоугольник";
+		c = a; d = b;
 	}
 	void check_correct() override
 	{
@@ -218,9 +225,10 @@ public:
 class Square : public Rangle
 {
 public:
-	Square(int a, int b, int c, int d, int A, int B, int C, int D) : Rangle(a, b, c, d, A, B, C, D)
+	Square(int a) : Rangle(a, b)
 	{
 		name = "Квадрат";
+		d = c = b = a;
 	}
 	void check_correct() override
 	{
@@ -240,9 +248,10 @@ public:
 class Rhombus : public Parallelogram
 {
 public:
-	Rhombus(int a, int b, int c, int d, int A, int B, int C, int D) : Parallelogram(a, b, c, d, A, B, C, D)
+	Rhombus(int a, int A, int B) : Parallelogram(a, b, A, B)
 	{
 		name = "Ромб";
+		d = c = b = a;
 	}
 	void check_correct() override
 	{
@@ -266,86 +275,66 @@ int main()
     SetConsoleOutputCP(1251);
 
 	Figure F;
-	F.check_correct();
 	F.print();
 	std::cout << "\n";
 
 	Triangle ABC(10, 20, 30, 50, 60, 70);
 	Figure* ABC_ptr = &ABC;
 
-	ABC_ptr->check_correct();
 	ABC_ptr->print();
-
 	std::cout << "\n";
 
-	Right_triangle rABC(10, 20, 30, 50, 60, 90);
+	Right_triangle rABC(10, 20, 30, 50, 60);
 	Figure* rABC_ptr = &rABC;
 
-	rABC_ptr->check_correct();
 	rABC_ptr->print();
-
 	std::cout << "\n";
 
-	Right_triangle rABC1(10, 20, 30, 50, 40, 90);
+	Right_triangle rABC1(10, 20, 30, 50, 40);
 	Figure* rABC_ptr1 = &rABC1;
 
-	rABC_ptr1->check_correct();
 	rABC_ptr1->print();
-
 	std::cout << "\n";
 
-	Isosceles_triangle iABC(10, 20, 10, 50, 60, 50);
+	Isosceles_triangle iABC(10, 20, 50, 60);
 	Figure* iABC_ptr = &iABC;
 
-	iABC_ptr->check_correct();
 	iABC_ptr->print();
-
 	std::cout << "\n";
 
-	Equilateral_triangle eABC(30, 30, 30, 60, 60, 60);
+	Equilateral_triangle eABC(30);
 	Figure* eABC_ptr = &eABC;
 
-	eABC_ptr->check_correct();
 	eABC_ptr->print();
-
 	std::cout << "\n";
 
 	Quadrangle ABCD(10, 20, 30, 40, 50, 60, 70, 80);
 	Figure* ABCD_ptr = &ABCD;
 
-	ABCD_ptr->check_correct();
 	ABCD_ptr->print();
-
 	std::cout << "\n";
 
-	Rangle rABCD(10, 20, 10, 20, 90, 90, 90, 90);
+	Rangle rABCD(10, 20);
 	Figure* rABCD_ptr = &rABCD;
 
-	rABCD_ptr->check_correct();
 	rABCD_ptr->print();
-
 	std::cout << "\n";
 
-	Square sABCD(20, 20, 20, 20, 90, 90, 90, 90);
+	Square sABCD(20);
 	Figure* sABCD_ptr = &sABCD;
 
-	sABCD_ptr->check_correct();
 	sABCD_ptr->print();
-
 	std::cout << "\n";
 
-	Parallelogram pABCD(20, 30, 20, 30, 30, 40, 30, 40);
+	Parallelogram pABCD(20, 30, 30, 40);
 	Figure* pABCD_ptr = &pABCD;
 
-	pABCD_ptr->check_correct();
 	pABCD_ptr->print();
-
 	std::cout << "\n";
 
-	Rhombus rhABCD(30, 30, 30, 30, 30, 40, 30, 40);
+	Rhombus rhABCD(30, 30, 40);
 	Figure* rhABCD_ptr = &rhABCD;
 
-	rhABCD_ptr->check_correct();
 	rhABCD_ptr->print();
 }
 
