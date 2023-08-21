@@ -60,22 +60,18 @@ public:
 class Isosceles_triangle : public Triangle
 {
 public:
-	Isosceles_triangle (int a, int b, int A, int B) : Triangle(a, b, c, A, B, C)
+	Isosceles_triangle (int a, int b, int A, int B) : Triangle(a, b, a, A, B, A)
 	{
 		name = "Равнобедренный треугольник";
-		C = A;
-		c = a;
 	}
 };
 
 class Equilateral_triangle : public Triangle
 {
 public:
-	Equilateral_triangle (int a) : Triangle(a, b, c, 60, 60, 60)
+	Equilateral_triangle (int a) : Triangle(a, a, a, 60, 60, 60)
 	{
 		name = "Равносторонний треугольник";
-		b = a;
-		c = a;
 	}
 };
 
@@ -118,12 +114,8 @@ public:
 class Parallelogram : public Quadrangle
 {
 public:
-	Parallelogram(int a, int b, int A, int B) : Quadrangle(a, b, c, d, A, B, C, D)
+	Parallelogram(int a, int b, int A, int B) : Quadrangle(a, b, a, b, A, B, A, B)
 	{
-		c = a;
-		d = b;
-		C = A;
-		D = B;
 		name = "Параллелограмм";
 	}
 
@@ -134,8 +126,6 @@ class Rangle : public Parallelogram
 public:
 	Rangle (int a, int b) : Parallelogram (a,b,90,90)
 	{
-		c = a;
-		d = b;
 		name = "Прямоугольник";
 	}
 };
@@ -143,9 +133,8 @@ public:
 class Square: public Rangle
 {
 public:
-	Square(int a) : Rangle(a, b)
+	Square(int a) : Rangle(a, a)
 	{
-		d = c = b = a;
 		name = "Квадрат";
 	}
 };
@@ -154,10 +143,8 @@ public:
 class Rhombus : public Parallelogram
 {
 public:
-	Rhombus(int a, int A, int B) : Parallelogram(a, b, A, B)
+	Rhombus(int a, int A, int B) : Parallelogram(a, a, A, B)
 	{
-		b = c = d = a;
-		C = A; D = B;
 		name = "Ромб";
 
 	}

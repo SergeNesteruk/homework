@@ -1,5 +1,5 @@
-﻿#include <Windows.h>
-#include <iostream>
+﻿#include <iostream>
+#include <Windows.h>
 
 class Figure
 {
@@ -7,7 +7,7 @@ protected:
 	std::string name;
 	std::string correctness;
 	int sides_count;
-	
+
 public:
 	Figure()
 	{
@@ -29,7 +29,7 @@ public:
 	virtual void print()
 	{
 		check_correct();
-		std::cout << name << ":\n" << correctness << "\n" << "Количество сторон: " << sides_count<<std::endl;
+		std::cout << name << ":\n" << correctness << "\n" << "Количество сторон: " << sides_count << std::endl;
 	}
 };
 
@@ -66,7 +66,7 @@ public:
 	void print() override
 	{
 		Figure::print();
-		std::cout <<"Стороны: a=" << a << " b=" << b << " c=" << c << "\nУглы: A=" << A << " B=" << B << " C=" << C << "\n";
+		std::cout << "Стороны: a=" << a << " b=" << b << " c=" << c << "\nУглы: A=" << A << " B=" << B << " C=" << C << "\n";
 	}
 };
 
@@ -94,16 +94,14 @@ public:
 class Isosceles_triangle : public Triangle
 {
 public:
-	Isosceles_triangle (int a, int b, int A, int B) : Triangle(a, b, c, A, B, C)
+	Isosceles_triangle(int a, int b, int A, int B) : Triangle(a, b, a, A, B, A)
 	{
 		name = "Равнобедренный треугольник";
-		c = a;
-		C = A;
 	}
 	void check_correct() override
 	{
 		Triangle::check_correct();
-		if (correctness == "Правильная" && A == C && a==c)
+		if (correctness == "Правильная" && A == C && a == c)
 		{
 			correctness = "Правильная";
 		}
@@ -117,15 +115,14 @@ public:
 class Equilateral_triangle : public Triangle
 {
 public:
-	Equilateral_triangle (int a) : Triangle(a, b, c, 60, 60, 60)
+	Equilateral_triangle(int a) : Triangle(a, a, a, 60, 60, 60)
 	{
 		name = "Равносторонний треугольник";
-		b = c = a;
 	}
 	void check_correct() override
 	{
 		Triangle::check_correct();
-		if (correctness == "Правильная" && a==b && a==c && b==c && A==60 && B==60 && C==60)
+		if (correctness == "Правильная" && a == b && a == c && b == c && A == 60 && B == 60 && C == 60)
 		{
 			correctness = "Правильная";
 		}
@@ -143,7 +140,7 @@ protected:
 	int a, b, c, d; //sides
 	int A, B, C, D; //angles
 public:
-	Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) : Figure ()
+	Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) : Figure()
 	{
 		this->a = a;
 		this->b = b;
@@ -170,7 +167,7 @@ public:
 	void print() override
 	{
 		Figure::print();
-		std::cout <<"Стороны: a=" << a << " b=" << b << " c=" << c <<" d="<< d <<"\nУглы: A=" << A << " B=" << B << " C=" << C <<" D="<< D << "\n";
+		std::cout << "Стороны: a=" << a << " b=" << b << " c=" << c << " d=" << d << "\nУглы: A=" << A << " B=" << B << " C=" << C << " D=" << D << "\n";
 	}
 
 };
@@ -178,16 +175,14 @@ public:
 class Parallelogram : public Quadrangle
 {
 public:
-	Parallelogram(int a, int b, int A, int B) : Quadrangle(a, b, c, d, A, B, C, D)
+	Parallelogram(int a, int b, int A, int B) : Quadrangle(a, b, a, b, A, B, A, B)
 	{
 		name = "Параллелограмм";
-		c = a; d = b;
-		C = A; D = B; 
 	}
 	void check_correct() override
 	{
 		Quadrangle::check_correct();
-		if (correctness == "Правильная" && a==c && b==d && A==C && B==D)
+		if (correctness == "Правильная" && a == c && b == d && A == C && B == D)
 		{
 			correctness = "Правильная";
 		}
@@ -205,12 +200,11 @@ public:
 	Rangle(int a, int b) : Parallelogram(a, b, 90, 90)
 	{
 		name = "Прямоугольник";
-		c = a; d = b;
 	}
 	void check_correct() override
 	{
 		Parallelogram::check_correct();
-		if (correctness == "Правильная" && A==90 && B == 90 && C == 90 && D == 90)
+		if (correctness == "Правильная" && A == 90 && B == 90 && C == 90 && D == 90)
 		{
 			correctness = "Правильная";
 		}
@@ -228,7 +222,6 @@ public:
 	Square(int a) : Rangle(a, b)
 	{
 		name = "Квадрат";
-		d = c = b = a;
 	}
 	void check_correct() override
 	{
@@ -248,15 +241,14 @@ public:
 class Rhombus : public Parallelogram
 {
 public:
-	Rhombus(int a, int A, int B) : Parallelogram(a, b, A, B)
+	Rhombus(int a, int A, int B) : Parallelogram(a, a, A, B)
 	{
 		name = "Ромб";
-		d = c = b = a;
 	}
 	void check_correct() override
 	{
 		Parallelogram::check_correct();
-		if (correctness == "Правильная" && a == b && a == d && b == c && c == d) 
+		if (correctness == "Правильная" && a == b && a == d && b == c && c == d)
 		{
 			correctness = "Правильная";
 		}
@@ -271,8 +263,8 @@ public:
 
 int main()
 {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
 	Figure F;
 	F.print();
@@ -337,4 +329,3 @@ int main()
 
 	rhABCD_ptr->print();
 }
-
