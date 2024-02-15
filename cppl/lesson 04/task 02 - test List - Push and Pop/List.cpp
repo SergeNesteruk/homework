@@ -132,7 +132,8 @@ TEST_CASE("check list push and pop methods", "[list]")
         CHECK(l.Size() == 0);
 
         l.PopBack();
-        REQUIRE(l.Size() == 0);
+        INFO("PopBack on empty list");
+        CHECK(l.Size() == 0);
 
         l.PushBack(5);
         l.PushBack(7);
@@ -153,7 +154,8 @@ TEST_CASE("check list push and pop methods", "[list]")
         List l;
         CHECK(l.Size() == 0);
         l.PopFront();
-        REQUIRE(l.Size() == 0);
+        INFO("PopFront on empty list");
+        CHECK(l.Size() == 0);
 
 
         l.PushBack(5);
@@ -176,8 +178,10 @@ TEST_CASE("check list push and pop methods", "[list]")
         CHECK(l.Size() == 0);
 
         l.PopBack();
+        INFO("PopBack on empty list");
         CHECK(l.Size() == 0);
         l.PopFront();
+        INFO("PopFront on empty list");
         CHECK(l.Size() == 0);
         l.PushBack(2);
         CHECK(l.Size() == 1);
