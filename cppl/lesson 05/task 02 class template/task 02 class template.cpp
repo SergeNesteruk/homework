@@ -12,24 +12,24 @@
 //
 //Должна быть константная функция Size, возвращающая размер таблицы.
 
-//template <class T>
+template <class T>
 class table
 {
 private:
 	int row;
 	int col;
-	int** table_ = nullptr;
+	T** table_ = nullptr;
 public:
 	table(int rows, int cols)
 	{
 		row = rows;
 		col = cols;
-		table_ = new int* [row] {};
+		table_ = new T* [row] {};
 		for (size_t i = 0; i < row; i++)
 		{
-			table_[i] = new int [col] {};
+			table_[i] = new T [col] {};
 		}
-		//std::cout << "Создана матрица размера " << row << " на " << col << '\n';
+		std::cout << "Создана матрица размера " << row << " на " << col << '\n';
 	};
 	~table()
 	{
@@ -49,26 +49,26 @@ public:
 	}
 
 
-	int *operator [] (const	int index)
+	T *operator [] (const int index)
 	{
 		return table_[index];
 	}
 
 
-	const int* operator [] (const int index) const
+	const T* operator [] (const int index) const
 	{
 		return table_[index];
 	}
 
-	table& operator= (const int value) // arr[3][5] = 5 - arr[row][col] = int
+	table& operator= (const T value)
 	{
 		table_[row][col] = value;
 		return *this;
 	}
-	friend std::ostream& operator <<(std::ostream & out, const table& right);
+	friend std::ostream& operator <<(std::ostream & out, const table<T>& right);
 };
 
-std::ostream& operator<<(std::ostream& out, const table& right)
+std::ostream& operator<<(std::ostream& out, const table<T>& right)
 {
 	for (int i = 0; i < right.row; i++) {
 		for (int j = 0; j < right.col; j++)
@@ -86,7 +86,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 
-	table a(3, 5);
+	table<double> a(3, 5);
 	a[1][1] = 5;
 	std::cout << "Вывод матрицы\n" << a <<'\n';
 	std::cout << "размер матрицы " << a.Size()<<'\n';
