@@ -8,7 +8,7 @@ T sqr(T a)
 }
 
 template <class T>
-std::vector<T> sqr(std::vector<T> a)
+std::vector<T> sqr(const std::vector<T> &a)
 {
     for (int i=0; i<a.size(); i++)
     {
