@@ -1,0 +1,160 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "pqxx-build",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-pqxx-build-Debug-5b5defdde4c020a0a66c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "E:/Netology/libpqxx-7.9.1"
+				},
+				{
+					"build" : "pqxx-build/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-pqxx-build.src-Debug-98c49848483ac31829ca.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "E:/Netology/libpqxx-7.9.1/src",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "pqxx-build/include",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-pqxx-build.include-Debug-796adfb56f0502ffc6b9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "E:/Netology/libpqxx-7.9.1/include"
+				},
+				{
+					"build" : "pqxx-build/test",
+					"jsonFile" : "directory-pqxx-build.test-Debug-a6779acccb5fb1d83a77.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "E:/Netology/libpqxx-7.9.1/test",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "task01_SQL",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "libpqxx",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "pqxx::@32063c78aea34bff505c",
+					"jsonFile" : "target-pqxx-Debug-0d279964cf00d3cd3102.json",
+					"name" : "pqxx",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "runner::@813ff6a9b2db031c2ef6",
+					"jsonFile" : "target-runner-Debug-35d9ddc90703882639a9.json",
+					"name" : "runner",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "task01_SQL::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-task01_SQL-Debug-857e0f96e4fcca802b44.json",
+					"name" : "task01_SQL",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/Netology/homework/sql/lesson 05/task 01 postgreSQL+c++/out/build/x64-Debug",
+		"source" : "E:/Netology/homework/sql/lesson 05/task 01 postgreSQL+c++"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

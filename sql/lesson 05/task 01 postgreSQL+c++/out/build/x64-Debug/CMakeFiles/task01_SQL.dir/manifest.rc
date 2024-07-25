@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "E:/Netology/homework/sql/lesson 05/task 01 postgreSQL+c++/out/build/x64-Debug/CMakeFiles/task01_SQL.dir/embed.manifest"
