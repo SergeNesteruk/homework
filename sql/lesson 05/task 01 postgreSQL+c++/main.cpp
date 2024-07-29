@@ -57,7 +57,7 @@ public:
 			{
 				cin >> newphn;
 				tx.exec("INSERT INTO phone_number (user_id, phone_number) \
-					 VALUES (1, '"+ tx.esc( to_string(newphn) )+"')");
+					VALUES((select id from public.user where fname = '" + tx.esc(newName) + "' and second_name = '" + tx.esc(newSName) + "' and email = '" + tx.esc(newemail) + "'), '" + tx.esc(to_string(newphn)) + "'); ");
 			}
 		}
 
@@ -183,13 +183,38 @@ public:
 		string search;
 		cin >> search;
 
-		for (auto [name, sname, email, phone] : tx.query<string, string, string, long>(
-			"SELECT fname, second_name, email, p.phone_number FROM user u \
-			LEFT JOIN phone_number p ON u.id = p.user_id \
-			WHERE fname = '"+tx.esc(search)+"' OR second_name = '"+ tx.esc(search)+"' OR email = '" + tx.esc(search) + "' OR p.phone_number = '" + tx.esc(search) + "'"))
+		cout << "¬ведите искомое значение:";
+		string searchStrVal, searchPhnVal;
+		if (search == "phone_number")
 		{
-			cout << name << " " << sname << " " << email << " " << phone<<endl;
+			cin >> searchPhnVal;
+
+			for (auto [uid, name, sname, email, phone] : tx.query<int, string, string, string, long>
+				(
+					"select u2.id, fname, second_name, email, pn.phone_number \
+				from public.user u2 \
+				left join phone_number pn on u2.id = pn.user_id \
+				where phone_number = '" + tx.esc(searchPhnVal) + "'  "
+				))
+			{
+				cout << name << " " << sname << " " << email << " " << phone << endl;
+			}
+
 		}
+		else
+		{
+			cin >> searchStrVal;
+			for (auto [uid, name, sname, email, phone] : tx.query<int, string, string, string, long>
+				(
+					"select u2.id, fname, second_name, email, pn.phone_number \
+				from public.user u2 \
+				left join phone_number pn on u2.id = pn.user_id \
+				where fname = '" + tx.esc(searchStrVal) + "' or second_name = '" + tx.esc(searchStrVal) + "' or email = '" + tx.esc(searchStrVal) + "'"
+				))
+			{
+				cout << name << " " << sname << " " << email << " " << phone << endl;
+			}
+		}		
 	}
 };
 
@@ -215,17 +240,17 @@ int main()
 		);
 		Userdb U;
 
-		U.createTables(c);
+		//U.createTables(c);
 
-		U.insertUser(c);
+		//U.insertUser(c);
 
-		U.add_phone(c);
+		//U.add_phone(c);
 
-		U.change_data(c);
+		//U.change_data(c);
 
-		U.delete_phone(c);
+		//U.delete_phone(c);
 
-		U.delete_user(c);
+		//U.delete_user(c);
 
 		U.search(c);
 	}
