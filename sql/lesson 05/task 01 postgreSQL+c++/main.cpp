@@ -240,17 +240,17 @@ int main()
 		);
 		Userdb U;
 
-		//U.createTables(c);
+		U.createTables(c);
 
-		//U.insertUser(c);
+		U.insertUser(c);
 
-		//U.add_phone(c);
+		U.add_phone(c);
 
-		//U.change_data(c);
+		U.change_data(c);
 
-		//U.delete_phone(c);
+		U.delete_phone(c);
 
-		//U.delete_user(c);
+		U.delete_user(c);
 
 		U.search(c);
 	}
