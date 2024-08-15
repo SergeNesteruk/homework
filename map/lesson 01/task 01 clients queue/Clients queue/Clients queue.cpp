@@ -42,7 +42,6 @@ int main()
         {
             std::thread t1(&counter::plus, &c);
             std::thread t2(&counter::minus, &c);
-            std::cout << "count = ";
             t1.join();
             t2.join();
         }
@@ -52,6 +51,5 @@ int main()
         std::cout << "Exception happend: " << e.what() << std::endl;
     }
 
-    
     return 0; 
 }
