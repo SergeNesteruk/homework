@@ -9,7 +9,14 @@
 #include <iterator>
 
 
-void sum_vec(const std::vector<int>& a, const std::vector<int>& b, std::vector<int> &sum)
+void sum_vec(const std::vector<int>& a, const std::vector<int>& b, std::vector<int> &sum, int length)
+{   
+    for (int i = 0; i < length; i++)
+    {
+        sum[i] = a[i] + b[i];
+    }
+}
+void sum_vec1(const std::vector<int>& a, const std::vector<int>& b, std::vector<int>& sum)
 {
     for (int i = 0; i < sum.size(); i++)
     {
@@ -30,7 +37,9 @@ void parallel_sum_vec(const std::vector<int>& a, const std::vector<int>& b, std:
     {
         int block_end = block_start;
         block_end =  block_size;
-        threads[i] = std::thread ( sum_vec, std::ref(a), std::ref(b), std::ref(sum));
+        int length = block_end - block_start;
+        threads[i] = std::thread ( sum_vec, std::ref(a), std::ref(b), std::ref(sum), length);
+        //threads[i] = std::thread(sum_vec1, std::ref(a), std::ref(b), std::ref(sum));
         block_start = block_end;
     }
     std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
