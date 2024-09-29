@@ -4,6 +4,7 @@
 #include <thread>
 #include <functional>
 #include <Windows.h>
+#include "Timer.h"
 
 
 std::mutex m;
@@ -13,9 +14,11 @@ void par_print_thread(int numthreads, int length)
 	std::vector<std::thread> threads(numthreads);
 	for (int i = 0; i < numthreads; ++i)
 	{
+		
 		threads[i] = std::thread([i, b, length]()
 			{
-				std::unique_lock mutex(m);
+				consol_parameter::SetPosition(0, i + 2);
+				//std::unique_lock mutex(m);
 				//std::unique_lock mutex(m, std::adopt_lock);
 				//std::scoped_lock scoped_mutex(m);
 				auto start = std::chrono::high_resolution_clock::now();
@@ -51,7 +54,7 @@ int main() {
 	std::cin >> length;
 	std::cout << "#\t" << "id\t" << "Progress bar\t" << "Time\n";
 
-	par_print_thread(num_threads, length);
+	par_print_thread(num_threads, length);	
 }
 
 
