@@ -26,8 +26,8 @@ public:
 
 void lock_swap(Data& obj1, Data& obj2)
 {
-	std::lock_guard lock_mutex1 (obj1.m);
-	std::lock_guard lock_mutex2 (obj2.m);
+	std::lock(obj1.m, obj2.m);
+	
 	int temp_a = obj1.get_a();
 	int temp_b = obj1.get_b();
 	obj1.set_a(obj2.get_a());
@@ -38,8 +38,8 @@ void lock_swap(Data& obj1, Data& obj2)
 
 void scoped_swap(Data& obj1, Data& obj2)
 {
-	std::scoped_lock scoped_mutex1 (obj1.m);
-	std::scoped_lock scoped_mutex2 (obj2.m);
+	std::scoped_lock scoped_mutex1 (obj1.m, obj2.m);
+	
 	int temp_a = obj1.get_a();
 	int temp_b = obj1.get_b();
 	obj1.set_a(obj2.get_a());
@@ -52,6 +52,7 @@ void unique_swap(Data& obj1, Data& obj2)
 {
 	std::unique_lock unique_mutex1 (obj1.m);
 	std::unique_lock unique_mutex2 (obj2.m);
+	
 	int temp_a = obj1.get_a();
 	int temp_b = obj1.get_b();
 	obj1.set_a(obj2.get_a());
