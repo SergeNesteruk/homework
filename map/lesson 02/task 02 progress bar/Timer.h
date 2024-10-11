@@ -15,6 +15,7 @@ public:
         point.Y = y;
         SetConsoleCursorPosition(hStdOut, point);
     }
+
 private:
     static HANDLE hStdOut;
 };
