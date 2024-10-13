@@ -2,7 +2,7 @@
 #include <vector>
 #include <chrono>
 #include <thread>
-#include <functional>
+#include <mutex>
 #include <Windows.h>
 #include "Timer.h"
 #include <stdlib.h>
@@ -41,7 +41,7 @@ void draw (int numthreads, int i, int length)
 	std::chrono::duration<double> time = end - start;
 	m.lock();
 	consol_parameter::SetPosition(40, i + 1);
-	std::cout <<  time << "\n";
+	std::cout <<  time.count() << "\n";
 	m.unlock();
 };
 
@@ -63,6 +63,10 @@ int main() {
 	{
 		threads[i] = std::thread(draw, num_threads, i, length);
 	}
-	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
+	for (int i = 0; i < num_threads; i++)
+	{
+		threads[i].join();
+	}
+
 	consol_parameter::SetPosition(0, num_threads+1);
 }
